@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import DropDown, { DropList } from "../dropdown";
-
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 interface Props {
   label?: string;
   list: DropList[];
   values: DropList[];
   onDropChange: (value: string | number) => void;
   removeValue: (idx: number) => void;
+  isAddBtn?: boolean;
+  handleAddBtn?: () => void;
 }
 
-const TagsComponent: React.FC<Props> = ({ label, list, onDropChange, values, removeValue }) => {
+const TagsComponent: React.FC<Props> = ({ label, list, onDropChange, values, removeValue, isAddBtn, handleAddBtn }) => {
   return (
     <>
-      <DropDown label={label} onChange={onDropChange} list={list} />
+      <DropDown label={label} onChange={onDropChange} list={list} isAddBtn={isAddBtn} handleAddBtn={handleAddBtn} />
       <TagList>
         {values.map((el, idx) => {
           return (
@@ -45,7 +46,6 @@ const TagList = styled.ul`
     border-radius: 10px;
     background: #ddd;
     position: relative;
-
     button {
       width: 12px;
       background: transparent;

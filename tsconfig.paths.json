@@ -2,18 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "Shared/*": [
-        "src/shared/*"
-      ],
-      "Pages/*": [
-        "src/pages/*"
-      ],
-      "Apis/*": [
-        "src/apis/*"
-      ],
-      "@/*": [
-        "src/*"
-      ]
+      "Shared/*": ["src/shared/*"],
+      "Pages/*": ["src/pages/*"],
+      "Apis/*": ["src/apis/*"],
+      "Components/*": ["src/components/*"],
+      "@/*": ["src/*"]
     }
   }
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
-import DropDown, { DropList } from "@/components/dropdown";
-import TagsComponent from "@/components/tags";
+import DropDown, { DropList } from "Components/dropdown";
+import TagsComponent from "Components/tags";
 import getAllNotes from "Apis/adminApi/getAllnotes";
+import useModal from "Shared/hooks/useModal";
+import AddNoteModal from "Components/modal/inner/addNote";
 
 const density: DropList[] = [
   {
@@ -25,17 +27,9 @@ const density: DropList[] = [
 const AddPerfume: React.FC = () => {
   const [perfumeDensity, setDensity] = useState<DropList | null>(null);
   const [notes, setNotes] = useState<DropList[]>([]);
-  const [noteList, setNoteList] = useState<
-    {
-      id: number;
-      note_category_id: number;
-      eng: string;
-      kor: string;
-      image: string;
-      illustration: string;
-    }[]
-  >([]);
-
+  const [noteList, setNoteList] = useState<DTOS.Output.Note[]>([]);
+  const { isOpen, controlOpenModal, Modal } = useModal();
+  console.log(isOpen);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -45,7 +39,7 @@ const AddPerfume: React.FC = () => {
         console.log();
       } catch (e) {}
     };
-    // getData();
+    false && getData();
   }, []);
 
   const handleNoteChange = (value: string | number) => {
@@ -71,6 +65,9 @@ const AddPerfume: React.FC = () => {
   };
   const removeNote = (idx: number) => {
     setNotes((prev) => prev.filter((el) => el.id !== idx));
+  };
+  const openNoteModal = () => {
+    controlOpenModal(true);
   };
   return (
     <Content>
@@ -114,9 +111,17 @@ const AddPerfume: React.FC = () => {
             onDropChange={handleNoteChange}
             removeValue={removeNote}
             values={notes}
+            handleAddBtn={openNoteModal}
+            isAddBtn
           />
         </InputSection>
       </FormSection>
+
+      {isOpen && (
+        <Modal>
+          <AddNoteModal />
+        </Modal>
+      )}
     </Content>
   );
 };

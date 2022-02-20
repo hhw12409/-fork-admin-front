@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 export interface DropList {
   id: string | number;
@@ -11,31 +12,56 @@ interface Props {
   label?: string;
   list: DropList[];
   value?: DropList | null;
+  isAddBtn?: boolean;
+  isTitle?: boolean;
   onChange: (value: string | number) => void;
+  handleAddBtn?: () => void;
 }
 
-const DropDown: React.FC<Props> = ({ list, value, label, onChange }) => {
+const DropDown: React.FC<Props> = ({
+  list,
+  value,
+  label,
+  onChange,
+  isAddBtn = false,
+  handleAddBtn,
+  isTitle = true,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasValue = !!value;
   return (
-    <DropdownContainer ref={containerRef} tabIndex={1} className={hasValue ? "written" : ""}>
-      <label>{!value ? label || "" : value.label}</label>
-      <ArrowDropDownOutlinedIcon className="drop-arrow" />
-      <ul className="drop-box">
-        {list.map((el) => (
-          <li
-            key={el.value}
-            onClick={() => {
-              console.log("test");
-              onChange(el.id);
-              (document.activeElement as HTMLElement)?.blur();
-            }}
-          >
-            {el.label || el.value}
-          </li>
-        ))}
-      </ul>
-    </DropdownContainer>
+    <>
+      {isTitle && (
+        <Title>
+          <h3>{label}</h3>
+          {isAddBtn && handleAddBtn && (
+            <button onClick={handleAddBtn}>
+              <AddOutlinedIcon />
+            </button>
+          )}
+        </Title>
+      )}
+      <DropdownContainer ref={containerRef} tabIndex={1} className={hasValue ? "written" : ""}>
+        <label>{!value ? label || "" : value.label}</label>
+        <ArrowDropDownOutlinedIcon className="drop-arrow" />
+        <ul className="drop-box">
+          {list.length > 0 &&
+            list.map((el) => (
+              <li
+                key={el.value}
+                onClick={() => {
+                  console.log("test");
+                  onChange(el.id);
+                  (document.activeElement as HTMLElement)?.blur();
+                }}
+              >
+                {el.label || el.value}
+              </li>
+            ))}
+          {list.length < 1 && <li>리스트가 존재하지 않습니다.</li>}
+        </ul>
+      </DropdownContainer>
+    </>
   );
 };
 
@@ -74,6 +100,7 @@ const DropdownContainer = styled.div`
       width: 100%;
       padding: 8px 12px;
       background: white;
+      font-size: 12px;
       &:hover {
         background: #eee;
         cursor: pointer;
@@ -92,6 +119,24 @@ const DropdownContainer = styled.div`
     label {
       color: rgba(0, 0, 0);
       font-size: 16px;
+    }
+  }
+`;
+
+const Title = styled.div`
+  margin-bottom: 12px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3px;
+  button {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    svg {
+      width: 18px;
+      height: auto;
     }
   }
 `;
