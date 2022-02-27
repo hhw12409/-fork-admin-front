@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 const FaultDirection: React.FC = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate("/")
-  }, [])
-  return <></>
-}
+    navigate("/");
+  }, [navigate]);
+  return <></>;
+};
 
-export default FaultDirection
+export default FaultDirection;

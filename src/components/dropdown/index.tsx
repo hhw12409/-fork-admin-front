@@ -50,7 +50,6 @@ const DropDown: React.FC<Props> = ({
               <li
                 key={el.value}
                 onClick={() => {
-                  console.log("test");
                   onChange(el.id);
                   (document.activeElement as HTMLElement)?.blur();
                 }}
@@ -89,13 +88,14 @@ const DropdownContainer = styled.div`
   .drop-box {
     position: absolute;
     display: none;
+    max-height: 120px;
+    overflow: scroll;
     top: calc(100% + 5px);
     left: -1px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     width: calc(100% + 2px);
     z-index: 100;
-    overflow: hidden;
     li {
       width: 100%;
       padding: 8px 12px;

@@ -7,34 +7,36 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/reducer";
 const Aside: React.FC = () => {
   const location = useLocation();
-  console.log(location)
-  const { isToggled } = useSelector((state: RootState) => state.layout)
-  return <Container>
-    <Header>
-      <h1>
-        <Link to={"/"}>Perfumery</Link>
-      </h1>
-    </Header>
-    <MenuList>
-      <MenuButton className="active">
-        <Link to="/perfume">
-          <GiDelicatePerfume /> 향수 리스트
-        </Link>
-      </MenuButton>
-    </MenuList>
-  </Container>
-}
+  const { isToggled } = useSelector((state: RootState) => state.layout);
+  false && console.log(isToggled, location);
+  return (
+    <Container>
+      <Header>
+        <h1>
+          <Link to={"/"}>na'nez</Link>
+        </h1>
+      </Header>
+      <MenuList>
+        <MenuButton className="active">
+          <Link to="/perfume">
+            <GiDelicatePerfume /> 향수 리스트
+          </Link>
+        </MenuButton>
+      </MenuList>
+    </Container>
+  );
+};
 
-export default Aside
+export default Aside;
 
 const Container = styled.aside`
-  display:flex;
+  display: flex;
   flex-direction: column;
-  width:200px;
-  height:100%;
-  position:absolute;
-  top:0;
-  left:0;
+  width: 200px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   background: ${ColorList.perfumeryPink};
   overflow: hidden;
 `;
@@ -43,11 +45,11 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  color:#fff;
-  h1{
+  color: #fff;
+  h1 {
     font-size: 1.5rem;
-    a{
-      color:#fff;
+    a {
+      color: #fff;
     }
   }
 `;
@@ -56,63 +58,62 @@ const MenuList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top:20px;
- 
+  margin-top: 20px;
 `;
 
 const MenuButton = styled.li`
-  width:100%;
+  width: 100%;
   text-align: center;
-  svg{
+  svg {
     height: 0.9em;
     margin-right: 8px;
-    fill:#fff;
+    fill: #fff;
   }
-  a{
+  a {
     margin: 6px 0;
-    display:flex;
-    width:100%;
+    display: flex;
+    width: 100%;
     justify-content: start;
     align-items: center;
-    height:40px;
-    color:black;
+    height: 40px;
+    color: black;
     padding-left: 30px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    color:#fff
+    color: #fff;
   }
-  &:hover, &.active {
+  &:hover,
+  &.active {
     padding-left: 12px;
-    svg{
-      fill:#000;
+    svg {
+      fill: #000;
     }
-    a{
-      color:#000;
+    a {
+      color: #000;
       background: white;
       position: relative;
       padding-left: 18px;
-      &::before{
+      &::before {
         content: "";
         position: absolute;
         right: 0;
-        bottom:100%;
-        width:30px;
-        height:30px;
+        bottom: 100%;
+        width: 30px;
+        height: 30px;
         background: transparent;
         border-radius: 50%;
-        box-shadow: 23px 23px 0  10px white;
+        box-shadow: 23px 23px 0 10px white;
       }
-      &::after{
+      &::after {
         content: "";
         position: absolute;
         right: 0;
-        top:100%;
-        width:30px;
-        height:30px;
+        top: 100%;
+        width: 30px;
+        height: 30px;
         background: transparent;
         border-radius: 50%;
-        box-shadow: 23px -23px 0  10px white;
-
+        box-shadow: 23px -23px 0 10px white;
       }
     }
   }

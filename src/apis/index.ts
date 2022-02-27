@@ -1,5 +1,4 @@
 import { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import getToken from "./getToken";
 export interface NetworkError {
   status: number;
   message: null | string;

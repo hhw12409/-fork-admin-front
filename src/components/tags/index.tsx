@@ -7,7 +7,7 @@ interface Props {
   list: DropList[];
   values: DropList[];
   onDropChange: (value: string | number) => void;
-  removeValue: (idx: number) => void;
+  removeValue: (id: number | string) => void;
   isAddBtn?: boolean;
   handleAddBtn?: () => void;
 }
@@ -17,11 +17,11 @@ const TagsComponent: React.FC<Props> = ({ label, list, onDropChange, values, rem
     <>
       <DropDown label={label} onChange={onDropChange} list={list} isAddBtn={isAddBtn} handleAddBtn={handleAddBtn} />
       <TagList>
-        {values.map((el, idx) => {
+        {values.map((el) => {
           return (
             <li key={el.value}>
               {el.label || el.value}
-              <button onClick={() => removeValue(idx)}>
+              <button onClick={() => removeValue(el.id)}>
                 <CloseOutlinedIcon />
               </button>
             </li>
@@ -39,7 +39,7 @@ const TagList = styled.ul`
   grid-gap: 12px;
   flex-wrap: wrap;
   align-items: center;
-  margin: 12px 0;
+  margin-top: 12px;
   li {
     padding: 5px 18px 5px 8px;
     font-size: 12px;

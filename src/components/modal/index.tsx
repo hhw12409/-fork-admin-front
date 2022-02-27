@@ -6,15 +6,15 @@ interface Props {
   controlOpenModal: (open?: boolean) => void;
 }
 const Modal: React.FC<Props> = ({ children, controlOpenModal, isOpen }) => {
-  useEffect(() => {
-    const handleWheelPrevent = (e: WheelEvent) => {
-      e.preventDefault();
-    };
-    window.addEventListener("wheel", handleWheelPrevent, { passive: false });
-    return () => {
-      window.removeEventListener("wheel", handleWheelPrevent);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleWheelPrevent = (e: WheelEvent) => {
+  //     e.preventDefault();
+  //   };
+  //   window.addEventListener("wheel", handleWheelPrevent, { passive: false });
+  //   return () => {
+  //     window.removeEventListener("wheel", handleWheelPrevent);
+  //   };
+  // }, []);
   return (
     <ModalPortal>
       {isOpen && (
