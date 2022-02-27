@@ -3,10 +3,10 @@ import { AxiosError } from "axios";
 import Swal from "sweetalert2";
 import * as Sentry from "@sentry/react";
 
-export const signup = createAsyncThunk<
+export const signin = createAsyncThunk<
   { token: string; name: string; email: string } | undefined,
-  { email: string; password: string; name: string }
->("user/signup", async (data, thunkAPI) => {
+  { email: string; password: string }
+>("user/signin", async (data, thunkAPI) => {
   try {
     // const errPercent = Math.floor(Math.random() * 10000) < 10
     // if (errPercent) {
@@ -45,10 +45,10 @@ export const signup = createAsyncThunk<
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     if (!err.response) {
-      Sentry.captureException(`error, 회원가입 통신 : ${err}`);
+      Sentry.captureException(`error, 로그인 통신 : ${err}`);
     } else {
-      Sentry.captureException(`error, 회원가입 통신 : ${err}`);
+      Sentry.captureException(`error, 로그인 통신 : ${err}`);
     }
-    Swal.fire("에러", "회원가입에 실패하였습니다. 다시 시도해주세요!", "error");
+    Swal.fire("에러", "로그인에 실패하였습니다. 다시 시도해주세요!", "error");
   }
 });

@@ -9,7 +9,7 @@ import AddPerfume from "./perfume/addPerfume";
 const PrivateRouter: React.FC = () => {
     return <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Layout />} >
+            <Route path="/"  element={<Layout />} >
                 <Route index element={<Mainpage />} />
                 <Route path="perfume/">
                     <Route index element={<PerfumeList />} />

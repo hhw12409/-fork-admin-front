@@ -1,12 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PerfumeList: React.FC = () => {
+  const navigate = useNavigate();
+  const handleAddBtn = () => {
+    navigate("/perfume/add");
+  };
   return (
     <Content>
       <Header>
         <h2>향수 리스트</h2>
-        <button className="add-perfume">향수 추가하기</button>
+        <button className="add-perfume" onClick={handleAddBtn}>
+          향수 추가하기
+        </button>
       </Header>
       <table>
         <colgroup></colgroup>

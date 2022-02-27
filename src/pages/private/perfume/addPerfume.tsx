@@ -15,9 +15,11 @@ import resizeImage, { dataURItoBlob } from "Shared/resizeImage";
 import Swal from "sweetalert2";
 import AddAccord from "Components/modal/inner/addAccord";
 import createPerfume from "Apis/adminApi/createPerfume";
+import { useNavigate } from "react-router-dom";
 
 const AddPerfume: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [brand, setBrand] = useState<DropList | null>(null);
   const imagesRef = useRef<HTMLInputElement>(null);
   const dataRef = useRef<Blob | null>(null);
@@ -207,7 +209,7 @@ const AddPerfume: React.FC = () => {
     try {
       await createPerfume(formData);
       Swal.fire("성공!", "향수를 성공적으로 추가하였습니다.", "success");
-      //todos hsitory.push
+      navigate("/perfume");
     } catch (error) {
       console.log(error);
       Swal.fire("에러", "향수를 추가를 실패하였습니다.", "error");

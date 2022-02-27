@@ -1,14 +1,23 @@
+import { signin } from "@/store/slices/user/async/signin";
 import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { ColorList } from "Shared/globalStyle/theme/color";
 import styled from "styled-components";
+import _ from "lodash";
+import { useDispatch } from "react-redux";
 
 const Signin: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSignin = _.throttle(() => {
+    dispatch(signin({ email, password }));
+  }, 1000);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     alert("지금은 전부 로그인 됩니다.");
+    handleSignin();
   };
   return (
     <Container>
