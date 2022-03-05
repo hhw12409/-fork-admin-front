@@ -16,6 +16,11 @@ declare namespace DTOS {
       id: number;
       name: string;
     }
+    interface Tag {
+      tag_category_id: number;
+      name: string;
+      id: number;
+    }
     interface TagCategory {
       id: number;
       name: string;
@@ -52,6 +57,37 @@ declare namespace DTOS {
       tag_category_id: number;
       name: string;
       id: number;
+    }
+
+    interface Perfume {
+      id: number;
+      kor: string;
+      eng: string;
+      image: string;
+      capacity: number;
+      price: number;
+      is_single: boolean;
+      brand: Brand;
+      density: Density;
+      perfume_accords: {
+        id: number;
+        accord_id: number;
+        perfume_id: number;
+        accord: Accord;
+      }[];
+      perfume_notes: {
+        id: number;
+        perfume_id: number;
+        note_id: number;
+        type: string;
+        note: Note;
+      }[];
+      perfume_tags: {
+        id: number;
+        tag_id: number;
+        perfume_id: number;
+        tag: Tag;
+      }[];
     }
   }
 }

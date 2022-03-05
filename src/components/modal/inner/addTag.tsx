@@ -46,6 +46,7 @@ const AddTagModal: React.FC<Props> = ({ closeModal }) => {
       });
       Swal.fire("성공", "태그 생성에 성공하였습니다. ", "success");
       closeModal();
+      console.log(tags);
       dispatch(setPerfumeDatas({ tags }));
     } catch (e) {
       console.log(e);

@@ -224,6 +224,7 @@ const AddPerfume: React.FC = () => {
       tag: false,
     });
   };
+  console.log(tags);
   return (
     <Content>
       <Header>
@@ -279,6 +280,28 @@ const AddPerfume: React.FC = () => {
             label={<InputLabel>가격(₩) 숫자만</InputLabel>}
             value={perfume.price}
             onChange={(e) => setPerfume((prev) => ({ ...prev, price: e.target.value }))}
+            size="small"
+            variant="outlined"
+          />
+        </InputSection>
+        <InputSection isFull style={{ marginTop: "12px" }}>
+          <TextField
+            fullWidth
+            label={<InputLabel>설명 타이틀</InputLabel>}
+            value={"not Yet!"}
+            // onChange={(e) => setPerfume((prev) => ({ ...prev, price: e.target.value }))}
+            size="small"
+            variant="outlined"
+          />
+        </InputSection>
+        <InputSection isFull>
+          <TextField
+            fullWidth
+            label={<InputLabel>설명</InputLabel>}
+            value={"not Yet!"}
+            multiline
+            rows={4}
+            // onChange={(e) => setPerfume((prev) => ({ ...prev, price: e.target.value }))}
             size="small"
             variant="outlined"
           />
@@ -446,14 +469,14 @@ const AddPerfume: React.FC = () => {
               }))}
               onDropChange={(value) => handleNoteChange(value, "single")}
               removeValue={(value) => removeNote(value, "single")}
-              values={selectedNotes.top}
+              values={selectedNotes.single}
               handleAddBtn={openNoteModal}
               isAddBtn
             />
           </InputSection>
         )}
+        <Submit onClick={addPerfume}>향수 생성하기</Submit>
       </FormSection>
-      <Submit onClick={addPerfume}>향수 생성하기</Submit>
       {isOpen && (
         <Modal>
           {modalType.note && <AddNoteModal closeModal={closeModal} />}

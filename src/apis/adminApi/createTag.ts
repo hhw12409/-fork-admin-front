@@ -7,8 +7,8 @@ interface Body {
 
 const createTag = async (body: Body) => {
   try {
-    const { data } = await AdminApi.post<{ notes: DTOS.Output.NoteCategory[] }>("/tag", body);
-    return data.notes;
+    const { data } = await AdminApi.post<{ tags: DTOS.Output.Tag[] }>("/tag", body);
+    return data.tags;
   } catch (error) {
     throw error;
   }

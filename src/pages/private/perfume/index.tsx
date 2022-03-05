@@ -1,12 +1,26 @@
-import React from "react";
+import getAllPerfumesData from "Apis/adminApi/getAllPerfumes";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PerfumeList: React.FC = () => {
   const navigate = useNavigate();
+  const [perfumes, setPerfumes] = useState<DTOS.Output.Perfume[]>([]);
   const handleAddBtn = () => {
     navigate("/perfume/add");
   };
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await getAllPerfumesData();
+        console.log(data);
+        setPerfumes(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    false && getData();
+  }, []);
   return (
     <Content>
       <Header>
