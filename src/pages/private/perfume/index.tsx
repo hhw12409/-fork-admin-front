@@ -13,7 +13,6 @@ const PerfumeList: React.FC = () => {
     const getData = async () => {
       try {
         const data = await getAllPerfumesData();
-        console.log(data);
         setPerfumes(data);
       } catch (error) {
         console.log(error);
@@ -54,6 +53,49 @@ const PerfumeList: React.FC = () => {
           .map((el) => el.accord.kor)
           .join(", "),
     },
+    {
+      label: "노트",
+      render: (item) => {
+        if (item.is_single) {
+          return (
+            <div>
+              <p>
+                싱글노트:{" "}
+                {item.perfume_notes
+                  .filter((note) => note.type === "S")
+                  .map((el) => el.note.kor)
+                  .join(", ")}
+              </p>
+            </div>
+          );
+        }
+        return (
+          <div>
+            <p>
+              탑노트:{" "}
+              {item.perfume_notes
+                .filter((note) => note.type === "T")
+                .map((el) => el.note.kor)
+                .join(", ")}
+            </p>
+            <p>
+              미들노트:{" "}
+              {item.perfume_notes
+                .filter((note) => note.type === "M")
+                .map((el) => el.note.kor)
+                .join(", ")}
+            </p>
+            <p>
+              베이스노트:{" "}
+              {item.perfume_notes
+                .filter((note) => note.type === "B")
+                .map((el) => el.note.kor)
+                .join(", ")}
+            </p>
+          </div>
+        );
+      },
+    },
   ];
   return (
     <Content>
@@ -87,7 +129,7 @@ const PerfumeList: React.FC = () => {
             ))}
           {perfumes.length === 0 && (
             <tr>
-              <td colSpan={7}>입력된 향수가 없습니다.</td>
+              <td colSpan={8}>입력된 향수가 없습니다.</td>
             </tr>
           )}
         </tbody>

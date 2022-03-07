@@ -79,7 +79,7 @@ declare namespace DTOS {
         id: number;
         perfume_id: number;
         note_id: number;
-        type: string;
+        type: "T" | "M" | "B" | "S";
         note: Note;
       }[];
       perfume_tags: {
