@@ -28,6 +28,8 @@ const AddPerfume: React.FC = () => {
     englishName: "",
     volume: "",
     price: "",
+    title: "",
+    subtitle: "",
   });
   const [imageName, setImageName] = useState("");
   const [imageSrc, setImageSrc] = useState("");
@@ -193,6 +195,8 @@ const AddPerfume: React.FC = () => {
     formData.append("eng", perfume.englishName);
     formData.append("capacity", perfume.volume);
     formData.append("price", perfume.price);
+    formData.append("title", perfume.title);
+    formData.append("subtitle", perfume.subtitle);
     formData.append("brand_id", String(brand?.id));
     formData.append("density_id", String(selectedDensity?.id));
     formData.append("accord_list", selectedAccords.map((el) => el.id).join());
@@ -288,8 +292,8 @@ const AddPerfume: React.FC = () => {
           <TextField
             fullWidth
             label={<InputLabel>설명 타이틀</InputLabel>}
-            value={"not Yet!"}
-            // onChange={(e) => setPerfume((prev) => ({ ...prev, price: e.target.value }))}
+            value={perfume.title}
+            onChange={(e) => setPerfume((prev) => ({ ...prev, title: e.target.value }))}
             size="small"
             variant="outlined"
           />
@@ -298,7 +302,8 @@ const AddPerfume: React.FC = () => {
           <TextField
             fullWidth
             label={<InputLabel>설명</InputLabel>}
-            value={"not Yet!"}
+            onChange={(e) => setPerfume((prev) => ({ ...prev, subtitle: e.target.value }))}
+            value={perfume.subtitle}
             multiline
             rows={4}
             // onChange={(e) => setPerfume((prev) => ({ ...prev, price: e.target.value }))}

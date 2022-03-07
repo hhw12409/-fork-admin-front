@@ -18,6 +18,7 @@ const Signup: React.FC = () => {
     e.preventDefault();
     alert("지금은 모두 회원가입 됩니다.");
     handleSignup();
+    //여기서 스로틀링
   };
   return (
     <Container>
