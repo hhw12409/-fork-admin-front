@@ -18,7 +18,7 @@ const PerfumeList: React.FC = () => {
         console.log(error);
       }
     };
-    false && getData();
+    getData();
   }, []);
   const tableHeader: { label: string; render: (perfume: DTOS.Output.Perfume, idx: number) => ReactNode }[] = [
     {
