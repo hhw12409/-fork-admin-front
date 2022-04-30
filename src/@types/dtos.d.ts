@@ -10,7 +10,7 @@ declare namespace DTOS {
       eng: string;
       kor: string;
       image: string;
-      illustration: string;
+      illustration: string | null;
     }
     interface NoteCategory {
       id: number;
@@ -69,6 +69,8 @@ declare namespace DTOS {
       is_single: boolean;
       brand: Brand;
       density: Density;
+      subtitle: "123";
+      title: "123";
       perfume_accords: {
         id: number;
         accord_id: number;
