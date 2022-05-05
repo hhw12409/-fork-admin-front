@@ -60,6 +60,7 @@ const AddPerfume: React.FC = () => {
     const getData = async () => {
       try {
         const data = await getPerfumeDatas();
+        console.log(data);
         dispatch(setPerfumeDatas({ ...data }));
       } catch (e) {
         console.log(e);
@@ -185,7 +186,9 @@ const AddPerfume: React.FC = () => {
     }
     if (
       !isSingleNote &&
-      (selectedNotes.top.length === 0 || selectedNotes.middle.length === 0 || selectedNotes.base.length === 0)
+      selectedNotes.top.length === 0 &&
+      selectedNotes.middle.length === 0 &&
+      selectedNotes.base.length === 0
     ) {
       Swal.fire("에러", "노트는 필수항목입니다.", "error");
       return;
@@ -228,7 +231,6 @@ const AddPerfume: React.FC = () => {
       tag: false,
     });
   };
-  console.log(tags);
   return (
     <Content>
       <Header>

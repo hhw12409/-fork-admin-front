@@ -20,7 +20,7 @@ const getPerfumeDatas = async () => {
     return {
       ...perfumeData,
       noteCategories: noteCategoryData.note_categories,
-      tagcategories: tagCategoryData.tag_categories,
+      tagCategories: tagCategoryData.tag_categories,
     };
   } catch (error) {
     throw error;

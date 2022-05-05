@@ -19,6 +19,7 @@ interface Props {
 const AddTagModal: React.FC<Props> = ({ closeModal }) => {
   const [name, setName] = useState("");
   const { tagCategories } = useSelector((state: RootState) => state.perfume);
+  console.log(tagCategories);
   const [category, setCategory] = useState<DropList | null>(null);
   const [categoryName, setCategoryName] = useState("");
   const [isOpenInner, setIsOpenInner] = useState(false);
