@@ -5,112 +5,21 @@ import styled from "styled-components";
 
 const PerfumeList: React.FC = () => {
   const navigate = useNavigate();
-  const [perfumes, setPerfumes] = useState<DTOS.Output.Perfume[]>([
-    {
-      id: 3,
-      brand: {
-        id: 7,
-        eng: "JO MALONE",
-        kor: "조말론",
-        image: "https://d2r80qr1d3owbg.cloudfront.net/brand/97592A9250BA4CB4A5B868A9EF37F5F0.png",
-      },
-      density: {
-        id: 8,
-        name: "perfume intense",
-      },
-      kor: "라임 바질 앤 만다린 코롱",
-      eng: "Lime Basil & Mandarin Cologne",
-      image: "https://d2r80qr1d3owbg.cloudfront.net/perfume/8F9955C5891B43F79F7B30D79CEC6A8E.blob",
-      capacity: 100,
-      price: 199000,
-      title: "123",
-      subtitle: "123",
-      is_single: false,
-      perfume_accords: [
-        {
-          id: 5,
-          accord_id: 18,
-          perfume_id: 3,
-          accord: {
-            id: 18,
-            eng: "smoky",
-            kor: "스모키",
-            image: "https://d2r80qr1d3owbg.cloudfront.net/accord/1A885766F23F4E18820D8D4CB23A9CCE.png",
-          },
-        },
-      ],
-      perfume_notes: [
-        {
-          id: 9,
-          perfume_id: 3,
-          note_id: 37,
-          type: "B",
-          note: {
-            note_category_id: 2,
-            eng: "Mandora",
-            kor: "만도라",
-            image: "https://d2r80qr1d3owbg.cloudfront.net/note/image/869311BA055F401894D5370899C1048F.blob",
-            illustration: null,
-            id: 37,
-          },
-        },
-        {
-          id: 8,
-          perfume_id: 3,
-          note_id: 43,
-          type: "M",
-          note: {
-            note_category_id: 2,
-            eng: "Tangelo",
-            kor: "탄젤로",
-            image: "https://d2r80qr1d3owbg.cloudfront.net/note/image/86C8F627462848BE9C13F60A67E80F2F.blob",
-            illustration: null,
-            id: 43,
-          },
-        },
-        {
-          id: 7,
-          perfume_id: 3,
-          note_id: 45,
-          type: "T",
-          note: {
-            note_category_id: 2,
-            eng: "Yuzu",
-            kor: "유자",
-            image: "https://d2r80qr1d3owbg.cloudfront.net/note/image/D7A9CF1852EF43FA8521CBCCBA24BEB9.blob",
-            illustration: null,
-            id: 45,
-          },
-        },
-      ],
-      perfume_tags: [
-        {
-          id: 5,
-          tag_id: 57,
-          perfume_id: 3,
-          tag: {
-            tag_category_id: 8,
-            name: "추천템",
-            id: 57,
-          },
-        },
-      ],
-    },
-  ]);
+  const [perfumes, setPerfumes] = useState<DTOS.Output.Perfume[]>([]);
   const handleAddBtn = () => {
     navigate("/perfume/add");
   };
   console.log("test");
   useEffect(() => {
-    // const getData = async () => {
-    //   try {
-    //     const data = await getAllPerfumesData();
-    //     setPerfumes(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // getData();
+    const getData = async () => {
+      try {
+        const data = await getAllPerfumesData();
+        setPerfumes(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
   }, []);
   const tableHeader: { label: string; render: (perfume: DTOS.Output.Perfume, idx: number) => ReactNode }[] = [
     {
