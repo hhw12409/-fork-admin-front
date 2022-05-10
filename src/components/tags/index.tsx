@@ -15,7 +15,14 @@ interface Props {
 const TagsComponent: React.FC<Props> = ({ label, list, onDropChange, values, removeValue, isAddBtn, handleAddBtn }) => {
   return (
     <>
-      <DropDown label={label} onChange={onDropChange} list={list} isAddBtn={isAddBtn} handleAddBtn={handleAddBtn} />
+      <DropDown
+        label={label}
+        onChange={onDropChange}
+        list={list}
+        isAddBtn={isAddBtn}
+        handleAddBtn={handleAddBtn}
+        isSearch
+      />
       <TagList>
         {values.map((el) => {
           return (

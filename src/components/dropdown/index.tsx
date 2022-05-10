@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
@@ -14,21 +14,25 @@ interface Props {
   value?: DropList | null;
   isAddBtn?: boolean;
   isTitle?: boolean;
+  isSearch?: boolean;
   onChange: (value: string | number) => void;
   handleAddBtn?: () => void;
 }
 
 const DropDown: React.FC<Props> = ({
-  list,
+  list: totalList,
   value,
   label,
   onChange,
   isAddBtn = false,
   handleAddBtn,
   isTitle = true,
+  isSearch = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasValue = !!value;
+  const [keyword, setKeyword] = useState("");
+  const list = !isSearch ? totalList : totalList.filter((el) => el.label?.match(keyword));
   return (
     <>
       {isTitle && (
@@ -42,7 +46,8 @@ const DropDown: React.FC<Props> = ({
         </Title>
       )}
       <DropdownContainer ref={containerRef} tabIndex={1} className={hasValue ? "written" : ""}>
-        <label>{!value ? label || "" : value.label}</label>
+        {!isSearch && <label>{!value ? label || "" : value.label}</label>}
+        {isSearch && <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)} />}
         <ArrowDropDownOutlinedIcon className="drop-arrow" />
         <ul className="drop-box">
           {list.length > 0 &&
@@ -78,6 +83,13 @@ const DropdownContainer = styled.div`
     color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
   }
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    display: block;
+    border: 0;
+    background: none;
+  }
   .drop-arrow {
     position: absolute;
     top: 50%;
@@ -110,7 +122,7 @@ const DropdownContainer = styled.div`
   &:hover {
     border-color: #000;
   }
-  &:focus {
+  &:focus-within {
     .drop-box {
       display: block;
     }
